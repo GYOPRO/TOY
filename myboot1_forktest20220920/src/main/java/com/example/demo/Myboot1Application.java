@@ -7,18 +7,11 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 
-/*  xml
- * <context:component-scan base-package=a.b.test">
- * @ComponentScan(basepackage="a.b.test")
- * 
- * 
- * */
+
 @SpringBootApplication
-//1. 스프링부트 시작 클래스 - tomcat 내장 시작(application.properties파일  server.port=8081)
 @ComponentScan //현재 패키지 annotation인식
-@ComponentScan(basePackages = "mycontroller")
-@ComponentScan(basePackages = "upload")
-@ComponentScan(basePackages = "board.spring.mybatis")
+@ComponentScan(basePackages = "controller") 
+
 // @Mapper 스캔설정
 @MapperScan(basePackages ="board.spring.mybatis" )
 @MapperScan(basePackages = "upload")

@@ -5,9 +5,7 @@
 <configuration>
 <!-- mybatis.MemberDTO  : memberdto -->
 <typeAliases>
-	<typeAlias type="board.spring.mybatis.MemberDTO" alias="memberdto"/>
-	<typeAlias type="board.spring.mybatis.BoardDTO" alias="boarddto"/>
-	<typeAlias type="upload.UploadDTO" alias="uploaddto"/>
+
 	
 </typeAliases>
 

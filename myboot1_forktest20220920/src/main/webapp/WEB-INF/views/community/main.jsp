@@ -146,7 +146,6 @@
     <div class="hot">
     최근 본 목록
     <ol>
-    
     <li><a href="oneCommunity?s_seq=<%=session.getAttribute("no0")%>"><%=session.getAttribute("no0") %></a></li>
     </ol>
     </div>

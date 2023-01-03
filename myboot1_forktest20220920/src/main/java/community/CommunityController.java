@@ -4,13 +4,16 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -43,11 +47,9 @@ public class CommunityController {
 	@Qualifier("commentservice")
 	CommentService commentservice;
 	
-
 	@Autowired
 	@Qualifier("productservice")
 	ProductServiceImpl productservice;
-	
 
 	
 	//전체 게시물 조회(페이징,조회순)
@@ -212,6 +214,7 @@ public class CommunityController {
 		p_name1 = oneCommu.p_name1;
 		mv.addObject("p_name1",p_name1);
 		mv.addObject("tag1",tag1);
+		System.out.println(p_name1);
 		}if(oneCommu.p_name2 != null){
 		List<ProductDTO> tag2 = commuserive.selectProductTag2(oneCommu.p_name2);
 		p_name2 = oneCommu.p_name2;
@@ -229,7 +232,7 @@ public class CommunityController {
 		mv.addObject("p_name4",p_name4);
 		}
 		
-
+		//ai pos
 		
 		String writer = oneCommu.getS_writer();
 		if(!oneCommu.imagename2.equals("")) {
@@ -245,8 +248,6 @@ public class CommunityController {
 		System.out.println(oneCommu.getImagename2());
 		}
 		
-		
-
 		mv.addObject("oneCommu",oneCommu);
 		mv.addObject("commuSeq",s_seq);
 		mv.addObject("writer",writer);
@@ -307,8 +308,6 @@ public class CommunityController {
 		return "{\"result\" : \"" + likeCheck + "\", \"result2\" : \"" + likeNum + "\" }";
 	}
 	
-
-
 		//검색기능
 		@RequestMapping("searchboard")
 		public ModelAndView searchboard(String searchField, String searchText) {

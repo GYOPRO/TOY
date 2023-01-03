@@ -2,6 +2,9 @@ package product;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public interface ProductService {
 	
 	/* public List<ProductDTO> list(int category_id) throws Exception; */

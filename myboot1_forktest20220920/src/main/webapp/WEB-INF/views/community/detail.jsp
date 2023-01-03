@@ -63,6 +63,7 @@ $(document).ready(function() {
 	});//onclick end
 });//ready end
 </script>
+
 <script>
 $(document).ready(function() {
 	//댓글등록
@@ -94,7 +95,6 @@ $(document).ready(function() {
 				}//if else end
 			},//success end
 		});//ajax end
-
 	})//댓글 end
 	
 	getList(); //데이터 조회 메소드 호출
@@ -144,7 +144,7 @@ $(document).ready(function() {
 
 	
 });//ready end
-
+</script>
 </head>
 <%String p_name1 = (String)request.getAttribute("p_name1");
 String p_name2 = (String)request.getAttribute("p_name2");
@@ -152,10 +152,7 @@ String p_name3 = (String)request.getAttribute("p_name3");
 String p_name4 = (String)request.getAttribute("p_name4");
 String image2 = (String)request.getAttribute("image2");
 String image3 = (String)request.getAttribute("image3");%>
-<%//variable
-String m_id = (String)session.getAttribute("m_id");
-String role1 = (String)session.getAttribute("role1");
-%>
+
 <body>
 <!-- navbar include -->
 	<%@include file="../include/navbar.jsp" %>
@@ -186,12 +183,12 @@ String role1 = (String)session.getAttribute("role1");
                            <button onclick="window.open(' report?s_seq=${oneCommu.s_seq }', 'window_name', 'width=430, height=500, location=no, status=no, scrollbars=yes');">신고하기</button>
              
                    </td>
-                   <% if(request.getAttribute("writer").equals(m_id)){ %>
+                   <% if(request.getAttribute("writer").equals(request.getAttribute("m_id"))){ %>
                         <td colspan="5">
                             <a href="deleteCommunity?s_seq=${oneCommu.s_seq }" id="deletechk" class="delete_btn btns">삭제하기</a>
                             <a href="updatecommuform?s_seq=${oneCommu.s_seq }" class="edit_btn btns">수정하기</a>                           
                   		 </td>
-                   <% }else if(role1 != null){ if(role1.equals("admin")){%>
+                   <% }else if(request.getAttribute("role1") != null){ if(request.getAttribute("role1").equals("admin")){%>
                    		<td colspan="5">
                             <a href="deleteCommunity?s_seq=${oneCommu.s_seq }" id="deletechk" class="delete_btn btns">삭제하기</a>
                             <a href="updatecommuform?s_seq=${oneCommu.s_seq }" class="edit_btn btns">수정하기</a>                           
@@ -222,7 +219,6 @@ String role1 = (String)session.getAttribute("role1");
             
             <!-- 상품태그 -->
  
-            
             <div id="container">
    			<div class="inner">
    			<h2>상품 태그</h2>
@@ -282,6 +278,8 @@ String role1 = (String)session.getAttribute("role1");
             </div>
             </div>
             </div>
+            
+            
 
             <!-- 댓글 -->
             <div class="comment_box">
@@ -314,32 +312,7 @@ String role1 = (String)session.getAttribute("role1");
         </div>
     </div>
 </div>
-<div id="xx"></div>
-<form action="color">
-<input type="hidden"  id="red" value="" name="red">
-<input type="hidden"  id="green" value="" name="green">
-<input type="hidden"  id="blue" value="" name="blue">
-<input type="submit" value="비슷한 상의 조회">
-</form>
 
-<form action="color2">
-<input type="hidden" id="red2" value="" name="red">
-<input type="hidden" id="green2" value="" name="green">
-<input type="hidden"  id="blue2" value="" name="blue">
-<input type="submit" value="비슷한 가방 조회" id="back">
-</form>
-
-<form action="color3">
-<input type="hidden" id="red3" value="" name="red">
-<input type="hidden" id="green3" value="" name="green">
-<input type="hidden"  id="blue3" value="" name="blue">
-<input type="submit" value="비슷한 하의 조회" id="bottom">
-</form>
-
-<canvas id="mycanvas" width=500 height=500  hidden></canvas>
-<canvas id="mycanvas2" width=500 height=500  hidden></canvas>
-<canvas id="mycanvas3" width=500 height=500  hidden></canvas>
-<div id="x"></div>
 <!-- footer include -->
 	<%@include file="../include/footer.jsp" %>
 </body>

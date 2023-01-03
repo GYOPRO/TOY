@@ -34,7 +34,7 @@ public class NaverInform {
 
  
  //(배포 and test) 은영 커스텀 path
- public final static String path = "C:\\git\\othub_project_2022\\othub\\src\\main\\resources\\static\\images\\community\\styleimg\\"; 
+ public final static String path = "~\\src\\main\\resources\\static\\images\\community\\styleimg\\"; 
  public final static String path2 = "C:\\git\\othub_project_2022\\othub\\src\\main\\resources\\static\\images\\";
  public final static String j_path = "C:\\git\\othub_project_2022\\othub\\src\\main\\resources\\static\\images\\review\\review_pic\\";
  public final static String j_path2 = "C:\\git\\othub_project_2022\\othub\\src\\main\\resources\\static\\images\\cs\\cs_pic\\";

@@ -2,14 +2,13 @@ package product;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.fasterxml.jackson.annotation.JacksonInject;
 
 @Service("productservice")
 public class ProductServiceImpl implements ProductService {
 	
-	@JacksonInject
+	@Autowired
     private ProductDAO productDao;
 	
 

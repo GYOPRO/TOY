@@ -1,0 +1,47 @@
+#full{
+	width: 1800px;
+	height: 920px;
+	margin: auto; /* 중앙 맞춤 */
+}
+#left{
+	width: 200px;
+	float: left;	
+}
+.player{
+	border : 1px solid;
+	width: 200px;
+	height: 230px;
+}
+#center2{
+	width: 400px;
+	height : 920px;
+	float: left;
+
+}
+.info{
+	border : 1px solid;
+	width : 400px;
+	height: 230px;
+}
+#center{
+	width: 200px;
+	height : 920px;
+	float: left;
+
+}
+.blue{
+	border : 1px solid;
+	width: 800px;
+	height: 920px;
+}
+
+#right{
+	width: 200px;
+	float: left;
+}
+.black{
+	border : 1px solid;
+	width: 400px;
+	height: 300px;
+	margin-left : 600px;
+}

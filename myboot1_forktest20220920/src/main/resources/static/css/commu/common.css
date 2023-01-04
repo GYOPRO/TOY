@@ -96,6 +96,9 @@ table.detail tbody td{
 	font-size: 14px;
 	margin: 10px 0;
 }
+td{
+	text-align: center;
+}
 .comments{
 	padding: 0px 20px;
 	box-sizing: border-box;

@@ -6,18 +6,7 @@
 <!-- mybatis.MemberDTO  : memberdto -->
 <typeAliases>
 	<typeAlias type="member.MemberDTO" alias="memberdto"/>
-	<typeAlias type="member.couponDTO" alias="coupondto"/>
-	<typeAlias type="community.CommunityDTO" alias="communitydto"/>
-	<typeAlias type="community.LikeDTO" alias="likedto"/>
-	<typeAlias type="comment.CommentDTO" alias="commentdto"/>
-	<typeAlias type="report.ReportDTO" alias="reportdto"/>
-<typeAlias type="member.PointDTO" alias="pointdto"/>
-
-	<typeAlias type="product.ProductDTO" alias="productdto"/>
-	<typeAlias type="shop.ShopDTO" alias="shopdto"/>
-	<typeAlias type="productdetail.ProductdetailDTO" alias="productdetaildto"/>
-	<typeAlias type="cart.CartDTO" alias="cartdto"/>
-	
+		<typeAlias type="community.CommunityDTO" alias="communitydto"/>
 
 	
 </typeAliases>

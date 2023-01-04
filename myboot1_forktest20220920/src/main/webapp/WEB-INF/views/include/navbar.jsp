@@ -73,10 +73,8 @@
 			</div>
 			<div class="nav_bar2">
 				<div class="nav_main_menu">
-					<span><a href="community">룩북</a></span>
-					<span><a href="/listrecom?c=1">쇼핑몰</a></span>
-					<span><a href="showroom">포토룸</a></span>
-					<span><a href="pose2inputU">내 체형의 옷 찾기</a></span>
+					<span><a href="community">게임하러가기</a></span>
+
 				</div>
 			</div>
 		</nav>

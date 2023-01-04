@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ot-hub</title>
+<title>NO Thanks</title>
 <link href="css/main/style.css" rel="stylesheet">
 <script src="js/jquery-3.6.0.min.js"></script>
 </head>
@@ -17,11 +17,10 @@
 	<main>
 		<section>
 			<div class="main">
-				<img src="images/index/illust.jpg" alt="">
+				<img src="images/index/illust.png" alt="" style="height: 900px;" width="1200px;  object-fit: cover;">
 			</div>
 		</section>
 	</main>
-
 	
 	<!-- footer include -->
 	<%@include file="../include/footer.jsp" %>

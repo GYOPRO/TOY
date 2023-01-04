@@ -57,7 +57,7 @@ public class MemberController {
 				session.setAttribute("m_id", dto.getM_id());
 				session.setAttribute("role1", m_dto.getRole1());
 				session.setAttribute("role2", m_dto.getRole2());
-				mv.setViewName("member/main");
+				mv.setViewName("main/index");
 			} else { // 로그인 실패 시
 				mv.setViewName("member/login");
 				mv.addObject("message", "error");
@@ -81,32 +81,15 @@ public class MemberController {
 		}
 		
 
-		
 	//회원가입
 	      @RequestMapping(value = "/signin", method = RequestMethod.POST)
 	      public String insertMember(MemberDTO dto) throws Exception{
 	            service.insertMember(dto);
-	            int cpcheck = service.couponCheckSilver(dto.m_id);
-	            if(cpcheck == 0 ) {
-	            	service.insertCouponSilver(dto.m_id);
-	            }
 	            
-	            couponDTO dto2 = new couponDTO();
 				LocalDate now = LocalDate.now();
 				String nowdate = now.getYear()+"-"+now.getMonthValue()+"-"+now.getDayOfMonth();
 				Date format2 = new SimpleDateFormat("yyyy-MM-dd").parse(nowdate); //지금시간
-				List<couponDTO> couponlist = service.selectCoupon(dto.m_id);
-				for(int i=0; i<couponlist.size(); i++) {
-					String enddate = couponlist.get(i).cp_endAt;
-					Date format1 = new SimpleDateFormat("yyyy-MM-dd").parse(enddate); //db시간
-					long diffSec = (format1.getTime() - format2.getTime()) / 1000; //초 차이
-					long diffDays = diffSec / (24*60*60); //일자수 차이
-					dto2.setPeriod(Long.toString(diffDays));
-					String period = dto2.getPeriod();
-					System.out.println(period);
-					service.updateDate(dto.m_id, period);
-				}
-				
+
 	            return "main/index";
 	      }
 	 //idcheck
@@ -115,38 +98,14 @@ public class MemberController {
 		@RequestMapping("/mypage")
 		public String mypage(HttpServletRequest request,String m_id,Model model) throws Exception{
 			
-			couponDTO dto = new couponDTO();
+			
 			HttpSession session = request.getSession();
 			m_id = (String)session.getAttribute("m_id");
 			MemberDTO mdto = service.selectOneMember(m_id);
-			List<couponDTO> couponlist = service.selectCoupon(m_id);
-			model.addAttribute("couponcount",couponlist.size());
-			
-			//지호
-			PointDTO pdto = service.countPoint(m_id);
-			model.addAttribute("countPoint", pdto); 
 
 			String role2 = mdto.role2;
-
 			model.addAttribute("role2",role2);
-			if(couponlist.isEmpty()) {
-			LocalDate now = LocalDate.now();
-			String nowdate = now.getYear()+"-"+now.getMonthValue()+"-"+now.getDayOfMonth();
-			Date format2 = new SimpleDateFormat("yyyy-MM-dd").parse(nowdate); //지금시간
-			
-			for(int i=0; i<couponlist.size(); i++) {
-				String enddate = couponlist.get(i).cp_endAt;
-				Date format1 = new SimpleDateFormat("yyyy-MM-dd").parse(enddate); //db시간
-				long diffSec = (format1.getTime() - format2.getTime()) / 1000; //초 차이
-				long diffDays = diffSec / (24*60*60); //일자수 차이
-				dto.setPeriod(Long.toString(diffDays));
-				String period = dto.getPeriod();
-				System.out.println(period);
-				service.updateDate(m_id, period);
-				System.out.println(diffDays);
-			}
-			}
-			
+
 			return "member/mypage";
 		}
 		
@@ -245,35 +204,6 @@ public class MemberController {
 			service.updateUserRole(dto);
 			return "redirect:/userlist";
 		}
-		
-	// 쿠폰함
-		@RequestMapping("mycoupon")
-		public ModelAndView mycoupon(String m_id, HttpServletRequest request) throws Exception{
-			couponDTO dto = new couponDTO();
-			HttpSession session = request.getSession();
-			m_id = (String)session.getAttribute("m_id");
-			List<couponDTO> couponlist = service.selectCoupon(m_id);
-			ModelAndView mv = new ModelAndView();
-			mv.addObject("couponlist",couponlist);
-			mv.setViewName("member/mycoupon");
-			
-			LocalDate now = LocalDate.now();
-			String nowdate = now.getYear()+"-"+now.getMonthValue()+"-"+now.getDayOfMonth();
-			Date format2 = new SimpleDateFormat("yyyy-MM-dd").parse(nowdate); //지금시간
-			
-			for(int i=0; i<couponlist.size(); i++) {
-				String enddate = couponlist.get(i).cp_endAt;
-				Date format1 = new SimpleDateFormat("yyyy-MM-dd").parse(enddate); //db시간
-				long diffSec = (format1.getTime() - format2.getTime()) / 1000; //초 차이
-				long diffDays = diffSec / (24*60*60); //일자수 차이
-				dto.setPeriod(Long.toString(diffDays));
-				String period = dto.getPeriod();
-				service.updateDate(m_id, period);
-			}
-			
 
-			return mv;
-		}
-		
 }
 

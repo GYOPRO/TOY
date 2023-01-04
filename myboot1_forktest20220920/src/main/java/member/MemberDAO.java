@@ -67,17 +67,7 @@ public interface MemberDAO {
 	//쿠폰 생성(vip)
 	public void insertCouponVip(String m_id);
 	
-	//my쿠폰 리스트
-	public List<couponDTO> selectCoupon(String m_id);
-	
 	public void updateDate(String m_id, String period);
-	
-	//지호
-	//포인트 적립
-	public void updatePoint(PointDTO pdto) throws Exception;
-		
-	//포인트 조회
-	public PointDTO countPoint(String m_id);
 	
 }
 

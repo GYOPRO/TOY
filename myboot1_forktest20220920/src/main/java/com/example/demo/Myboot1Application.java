@@ -19,6 +19,7 @@ import member.MemberDAO;
 @ComponentScan(basePackages = "main") 
 @ComponentScan(basePackages = "member") 
 @ComponentScan(basePackages = "community") 
+@ComponentScan(basePackages = "chatt") 
 
 
 // @Mapper 스캔설정

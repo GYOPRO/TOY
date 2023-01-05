@@ -12,8 +12,6 @@ import main.MainDAO;
 import member.MemberDAO;
 
 
-
-
 @SpringBootApplication
 @ComponentScan //현재 패키지 annotation인식
 @ComponentScan(basePackages = "main") 

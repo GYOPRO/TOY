@@ -35,7 +35,10 @@ btnLogin.onclick = function(){
 					
 		talk.innerHTML += item;
 		talk.scrollTop=talk.scrollHeight;//스크롤바 하단으로 이동
+		
+		
 	}
+	
 }
 
 msg.onkeyup = function(ev){

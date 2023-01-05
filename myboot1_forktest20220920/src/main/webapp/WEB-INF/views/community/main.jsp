@@ -52,6 +52,20 @@
    </div>
 
    </div>
+   
+   	<div id='chatt'>
+		<h1>WebSocket Chatting</h1>
+		<input type='hidden' id='mid' value="<%=session.getAttribute("m_id")%>">
+	
+		<input type='button' value='채팅참여' id='btnLogin'>
+		<br/>
+		<div id='talk'></div>
+		<div id='sendZone'>
+			<textarea id='msg' value='hi...' ></textarea>
+			<input type='button' value='전송' id='btnSend'>
+		</div>
+	</div>
+	<script src='js/chatt.js'></script>
 	</section>
 	
 	<!-- footer include -->

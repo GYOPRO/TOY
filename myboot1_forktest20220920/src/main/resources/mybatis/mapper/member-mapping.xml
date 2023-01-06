@@ -5,60 +5,47 @@
 	
 <!-- 회원가입 -->
 <insert id="insertMember" parameterType="member.MemberDTO" >
- insert into member(m_id,m_pw,m_name,m_address,m_phone,m_email,m_sex) 
- values (#{m_id},#{m_pw},#{m_name},#{m_address},#{m_phone},#{m_email},#{m_sex}) 
+ insert into member(id,password,name,nickname,email) 
+ values (#{id},#{password},#{name},#{nickname},#{email}) 
 </insert>
 
 <!-- 회원가입확인 -->
 <select id="insertCheck" resultType="String">
-	select * from member where m_id=#{m_id}	and m_pw=#{m_pw}
+	select * from member where id=#{id}	and password=#{password}
 </select>
 
 <!-- 회원정보조회 -->
 <select id="selectOneMember" resultType="memberdto" parameterType="String">
-	select * from member where m_id=#{m_id}
+	select * from member where id=#{id}
 </select>
 
 <!-- 회원정보수정 -->
 <update id="updateMember" parameterType="memberdto" >
-	update member set m_id=#{m_id}, m_name=#{m_name},m_address=#{m_address} ,m_phone=#{m_phone}, m_email=#{m_email} where m_id=#{m_id}
+	update member set id=#{id}, name=#{name}, email=#{email},nickname=#{nickname} where id=#{id}
 </update>
 
 <!-- 아이디체크 -->
 <select id="checkId" resultType="int" parameterType="String">
-	select count(m_id) from member where m_id=#{m_id}
+	select count(id) from member where id=#{id}
+</select>
+
+<!-- 닉네임체크 -->
+<select id="checkNick" resultType="int" parameterType="String">
+	select count(nickname) from member where nickname=#{nickname}
 </select>
 
 <!-- 회원탈퇴 -->
 <delete id="deleteMember" parameterType="String">
-delete from member where m_id=#{m_id}
+delete from member where id=#{id}
 </delete>
 
 <!-- 모든 회원정보 조회 -->
 <!-- 회원리스트 조회 -->
 <select id="selectMemberList" resultType="memberdto">
-	select m_id,m_pw,m_name,m_email,m_phone,m_sex,m_address,m_regdate,role1 from member order by role1
+	select id,password,name,email,nickname,win,lose from member
 </select>
 
-<!-- 관리자 회원정보 수정 -->
-<update id="updateMemberByAdmin" parameterType="memberdto" >
-	update member set role1=#{role1} where m_id=#{m_id}
-</update>
 
-<!-- 관리자 회원 탈퇴 -->
-<delete id="deleteMemberByAdmin"  parameterType="String">
-	delete from member where m_id=#{m_id}
-</delete>
-
-<!-- 일반 회원 조회 -->
-<select id="selectUserList" resultType="memberdto">
-	select m_id,m_pw,m_name,m_email,m_phone,m_sex,m_address,m_regdate,role1,role2 from member where role1 = 'user' order by field(role2, 'vip','gold','silver')
-</select>
-
-<!-- 일반 회원 등급 변경 -->
-<update id="updateUserRole" parameterType="memberdto" >
-	update member set role2=#{role2} where m_id=#{m_id}
-</update>
 
 
 

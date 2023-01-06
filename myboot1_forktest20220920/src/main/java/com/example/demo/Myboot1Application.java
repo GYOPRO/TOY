@@ -8,7 +8,6 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.ComponentScan;
 
 import community.CommunityDAO;
-import main.MainDAO;
 import member.MemberDAO;
 
 
@@ -21,7 +20,7 @@ import member.MemberDAO;
 
 
 // @Mapper 스캔설정
-@MapperScan(basePackageClasses = MainDAO.class)
+
 @MapperScan(basePackageClasses = MemberDAO.class)
 @MapperScan(basePackageClasses = CommunityDAO.class)
 

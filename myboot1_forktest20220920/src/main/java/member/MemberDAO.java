@@ -24,6 +24,9 @@ public interface MemberDAO {
 	
 	//아이디체크
 	public int checkId(String m_id);
+	
+	//닉네임체크
+	public int checkNick(String nickname);
 
 	//회원탈퇴
 	public void deleteMember(String m_id);

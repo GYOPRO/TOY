@@ -36,9 +36,9 @@
             <h1>LOG IN</h1>
             <form action="loginprocess" method="post">
                 <fieldset>회원가입 폼</fieldset>
-                <input id="id" type="text" name="m_id" placeholder="Id">
+                <input id="id" type="text" name="id" placeholder="Id">
                 
-                <input id="password" type="password" name="m_pw" placeholder="Password">
+                <input id="password" type="password" name="password" placeholder="Password">
                 <a href="signin">Sign in</a>
                 <input id="btnLogin" type="submit" value="Log in" style="background-color: #2186db;">
                 <!-- 네이버 아이디 로그인 버튼 노출 영역 -->

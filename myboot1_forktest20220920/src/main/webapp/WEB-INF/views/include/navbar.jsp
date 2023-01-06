@@ -42,10 +42,7 @@
 					if(m_id == null){
 						%><a href="login"><%out.print("login");%></a><%
 					}
-					else if(role1.equals("admin")){
-						out.print(m_id + " 관리자님 접속되었습니다.");
-					}
-					else if(role1.equals("user") || role1.equals("partner")){
+					else {
 						out.print(m_id + "님 환영합니다.");
 					}
 					%></li>
@@ -54,12 +51,10 @@
 					if(m_id == null){
 						%><a href="signin"><%out.print("sign up");%></a><%
 					}
-					else if(role1.equals("user") || role1.equals("partner")){
+					else{
 						%><a href="mypage"><%out.print("mypage");%></a><%
 					}
-					else if(role1.equals("admin")){
-						%><a href="adminpage"><%out.print("AdminPage");%></a><%
-					}
+					
 					%></li>
 					<!-- 고객센터 -->
 					<li><a href="/cslistPage?csnum=1">Customer Support</a></li>

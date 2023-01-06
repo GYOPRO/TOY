@@ -43,7 +43,11 @@ public class MemberService  {
 	//아이디체크
 	public int checkId(String m_id) {
 		int cnt = dao.checkId(m_id);
-		System.out.println("cnt : " + cnt);
+		return cnt;
+	}
+	
+	public int checkNick(String nickname) {
+		int cnt = dao.checkNick(nickname);
 		return cnt;
 	}
 	

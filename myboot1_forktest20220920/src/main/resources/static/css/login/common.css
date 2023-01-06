@@ -40,6 +40,16 @@ color:#6A82FB;
 display: none;
 }
 
+.nick_ok{
+color:#008000;
+display: none;
+}
+
+.nick_already{
+color:#6A82FB; 
+display: none;
+}
+
 h1 a:hover{
 	opacity: 0.8;
 }
@@ -249,6 +259,15 @@ form label{
 	width: 80px;
 	font-size: 13px;
 }
+
+#nickcheck{
+	margin : 10px;
+	height : 30px;
+	display: inline-block;
+	width: 80px;
+	font-size: 13px;
+}
+
 
 #signbtn { 
 	color: white;

@@ -6,17 +6,19 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel='stylesheet' type='text/css' href='css/chat/chatt.css'>
+<script>
+	$(document).ready(function() {
+		
+	});//ready end
+</script>
 </head>
 <body>
 	<div id='chatt'>
-		<h1>WebSocket Chatting</h1>
+		<div id= "chatHeader">Everyone</div>
 		<input type='hidden' id='mid' value="<%=session.getAttribute("m_id")%>">
-	
-		<input type='button' value='채팅참여' id='btnLogin'>
-		<br/>
 		<div id='talk'></div>
 		<div id='sendZone'>
-			<textarea id='msg' value='hi...' ></textarea>
+			<input id='msg' value='' autocomplete="off" size="30">
 			<input type='button' value='전송' id='btnSend'>
 		</div>
 	</div>

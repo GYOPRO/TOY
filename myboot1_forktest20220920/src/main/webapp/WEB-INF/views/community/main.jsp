@@ -13,13 +13,11 @@
 	<script src="js/jquery-3.6.0.min.js"></script>
 	<script>
 	$(document).ready(function() {
-		
-		$("#deletebtn").click(function(ev){
-			 if(!confirm("탈퇴 처리 하시겠습니까?")) {
-				 ev.preventDefault();
-			 }
-		 });
-		
+		var ss = <%=session.getAttribute("nick")%>
+		var change = "손님"+Math.floor(Math.random()*1000);
+		if(ss == null){
+			document.getElementById("mid").value=change;
+		}
 		});//ready end
 	</script>
 </head>
@@ -33,35 +31,30 @@
 				<div class="inner">
 	<table>
 	 <colgroup>
-              <col width="200px"><col width="200px"><col width="200px"><col width="200px">
+              <col width="150px"><col width="400px"><col width="220px"><col width="220px">
             </colgroup>
             <thead >
                <tr>
                   <th>번호</th>
                   <th>제목</th>
                   <th>인원수</th>
-                  <th>방장</th>
+                  <th>제작자</th>
                </tr>
             </thead>
             <tbody>
 			<c:forEach items="${boardlist }" var="list">
-            	<tr onclick="location.href='game?g_seq=${list.g_seq }'" style="cursor: pointer;"><td>${list.g_seq }</td><td>${list.g_title }</td><td>${list.g_player }</td><td>${list.g_master }</td></tr>
+            	<tr onclick="location.href='game?g_seq=${list.g_seq }'" id="bodytr"><td>${list.g_seq }</td><td>${list.g_title }</td><td>${list.g_player }명</td><td>${list.g_master }</td></tr>
             </c:forEach>
             </tbody>
    </table>
    </div>
-
    </div>
-   
    	<div id='chatt'>
-		<h1>WebSocket Chatting</h1>
-		<input type='hidden' id='mid' value="<%=session.getAttribute("m_id")%>">
-	
-		<input type='button' value='채팅참여' id='btnLogin'>
-		<br/>
+		<div id= "chatHeader">Everyone</div>
+		<input type='hidden' id='mid' value="<%=session.getAttribute("nick")%>">
 		<div id='talk'></div>
 		<div id='sendZone'>
-			<textarea id='msg' value='hi...' ></textarea>
+			<input id='msg' value='' autocomplete="off" size="30">
 			<input type='button' value='전송' id='btnSend'>
 		</div>
 	</div>

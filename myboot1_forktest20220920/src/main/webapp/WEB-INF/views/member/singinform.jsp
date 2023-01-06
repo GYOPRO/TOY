@@ -42,30 +42,25 @@ $(document).ready(function(){
             <form action="signin" method="post" onsubmit="return submitCheck()">
                 <label>아이디</label>
                 <div class="check">
-                <input type="text" name="m_id" placeholder="ID" id="m_id">
-                <button type="button" onclick="checkId()" id="idcheck">중복 확인</button>
+	                <input type="text" name="id" placeholder="ID" id="m_id">
+	                <button type="button" onclick="checkId()" id="idcheck">중복 확인</button>
                 </div>
               	<span class="id_ok">사용 가능한 아이디입니다.</span>
 				<span class="id_already">이미 사용중인 아이디입니다.</span>
                 <label>비밀번호</label>
-                <input type="password" name="m_pw" placeholder="Password" id="m_password">
+                	<input type="password" name="password" placeholder="Password" id="m_password">
                 <div id="pwcheck"></div>
                 <label>이름</label>
-                <input type="text" name="m_name" placeholder="이름" id="m_name">
-                <label>주소</label>
-                <input type="text" name="m_address" placeholder="주소" id="m_address">
-                <label>폰번호</label>
-                <input type="text" name="m_phone" placeholder="010-1234-5678" id = "m_phone">
+                	<input type="text" name="name" placeholder="이름" id="m_name">
+                <label>닉네임</label>
+                <div class="check">
+               		<input type="text" name="nickname" placeholder="nickname" id="nickname">
+               		<button type="button" onclick="checknick()" id="nickcheck">중복 확인</button>
+               	</div>
+               	<span class="nick_ok">사용 가능한 닉네임입니다.</span>
+				<span class="nick_already">이미 사용중인 닉네임입니다.</span>
                 <label>이메일</label>
-                <input type="email" name="m_email" placeholder="Email" id="m_email">
-                
-                <label>성별</label>
-                
-                <div class="select">
-                <input type="radio" name="m_sex"  id="m_sex1"><label for="m_sex1">남</label>
-				<input type="radio" name="m_sex"  id="m_sex2"><label for="m_sex2">여</label>
-				</div>
-				
+                <input type="email" name="email" placeholder="Email" id="m_email">
                 <input id="signbtn" type="submit" value="가입하기"  onclick="checkId()">
                 <c:if test="${message == 'error'}">
  					<div style="color:red;"> 중복된 아이디 입니다.
@@ -104,6 +99,33 @@ function checkId(){
 		}
 			
 	});
+	
+	
+}
+function checknick(){
+var nickname = $("#nickname").val()
+	
+	$.ajax({
+		url : '/nickCheck',
+		type : 'post',
+		data : {nickname:nickname},
+		dataType : 'json',
+		success : function(cnt){
+			if(cnt == 0){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
+                $('.nick_ok').css("display","inline-block"); 
+                $('.nick_already').css("display", "none");
+            } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
+                $('.nick_already').css("display","inline-block");
+                $('.nick_ok').css("display", "none");
+                $('#nick').val('');
+			}
+		},
+		error:function(){
+			alert("에러입니다");
+		}
+			
+	});
+	
 }
 function submitCheck() {
 

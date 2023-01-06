@@ -49,14 +49,13 @@ public class MemberController {
 		@PostMapping("/loginprocess")
 		public ModelAndView login_check(@ModelAttribute MemberDTO dto, HttpSession session, HttpServletRequest request) {
 			String name = service.insertCheck(dto);
-			MemberDTO m_dto = service.selectOneMember(dto.getM_id());
+			MemberDTO m_dto = service.selectOneMember(dto.getId());
 			ModelAndView mv = new ModelAndView();
 			session = request.getSession();
-
+			
 			if (name != null) { // 로그인 성공 시
-				session.setAttribute("m_id", dto.getM_id());
-				session.setAttribute("role1", m_dto.getRole1());
-				session.setAttribute("role2", m_dto.getRole2());
+				session.setAttribute("m_id", dto.getId());
+				session.setAttribute("nick", m_dto.nickname);
 				mv.setViewName("main/index");
 			} else { // 로그인 실패 시
 				mv.setViewName("member/login");
@@ -86,9 +85,6 @@ public class MemberController {
 	      public String insertMember(MemberDTO dto) throws Exception{
 	            service.insertMember(dto);
 	            
-				LocalDate now = LocalDate.now();
-				String nowdate = now.getYear()+"-"+now.getMonthValue()+"-"+now.getDayOfMonth();
-				Date format2 = new SimpleDateFormat("yyyy-MM-dd").parse(nowdate); //지금시간
 
 	            return "main/index";
 	      }
@@ -103,8 +99,6 @@ public class MemberController {
 			m_id = (String)session.getAttribute("m_id");
 			MemberDTO mdto = service.selectOneMember(m_id);
 
-			String role2 = mdto.role2;
-			model.addAttribute("role2",role2);
 
 			return "member/mypage";
 		}
@@ -127,14 +121,22 @@ public class MemberController {
 			return "member/mypage";
 		}
 		
-	//아이디중복확인 - 하.. 안댐
+	//아이디중복확인
 		@RequestMapping("/idCheck")
 		@ResponseBody
 		public int idCheck(@RequestParam("m_id") String m_id) {
 			int cnt = service.checkId(m_id);
 			return cnt;
 		}
-	
+	//닉네임 중복확인
+		@RequestMapping("/nickCheck")
+		@ResponseBody
+		public int nickCheck(@RequestParam("nickname") String nickname) {
+			int cnt = service.checkNick(nickname);
+			System.out.println(cnt);
+			return cnt;
+		}
+		
 	//회원탈퇴
 		@RequestMapping("/deletemember")
 		public String deleteprocess(String m_id, HttpServletRequest request) {
@@ -184,7 +186,7 @@ public class MemberController {
 	// 관리자 회원 탈퇴
 		@PostMapping("/deleteMemberByAdmin")
 		public String deleteMemberByAdmin(MemberDTO dto) {
-			service.deleteMemberByAdmin(dto.m_id);
+			service.deleteMemberByAdmin(dto.id);
 			return "redirect:/memberlist";
 		}
 		
